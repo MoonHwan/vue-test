@@ -8,7 +8,8 @@
 <body>
     <div id="app">
         <!-- <app-contents v-bind:propsdata="message"></app-contents> -->
-        <app-contents></app-contents>
+        <!-- <app-contents v-on:하위 컴포넌트에서 발생한 이벤트 이름="상위컴포넌트 매서드 이름"></app-contents> -->
+        <app-contents v-on:pass="showAlert"></app-contents>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -25,6 +26,11 @@
         new Vue({
             el:'#app',
             components:{'app-contents':content},
+            methods:{
+                showAlert:function(){
+                    alert('hihello vue.js');
+                }
+            }
             // data:{
             //     message:'현지'
             // }

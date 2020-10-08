@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id=app>
+        <p>{{num}}</p>
+        <app-header v-on:pass="increaseNum"></app-header>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader={
+            template: '<button v-on:click="passEvent">클릭</button>', 
+            methods:{
+                passEvent: function(){
+                    this.$emit('pass');
+                }
+            }
+        }
+        
+        new Vue({
+            el:'#app',
+            components:{'app-header':appHeader},
+            methods:{
+                increaseNum:function(){
+                    this.num=this.num+1;
+                }
+            },
+            data:{
+                num: 10
+            }
+
+        });
+    </script>
+</body>
+</html>
