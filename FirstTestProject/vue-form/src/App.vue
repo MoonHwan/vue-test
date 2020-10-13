@@ -1,5 +1,7 @@
 <template>
+  <!-- <form v-on:submit="submitform"> -->
   <form v-on:submit.prevent="submitform">
+    <!-- prevent=form의 기본 기능(새로고침)을 막는다 -->
     <div>
       <label for="username">id: </label>
       <input id="username" type="text" v-model="username">
@@ -9,6 +11,7 @@
       <input id="password" type="password" v-model="password">
     </div>
     <button type="submit">login</button>
+    <p>{{username}}가 로그인했음</p>
   </form>
 </template>
 
