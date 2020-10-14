@@ -51,11 +51,10 @@ export default {
         background: white;
         border-radius: 5px;
     }
-
+                                                                                                                                                                                                                                                                                                                                                                               
     .checkBtn{
         line-height: 45px;
         color: darkcyan;
-        margin-right: 5px;
     }
     .removeBtn{
         margin-left: auto;
