@@ -1,7 +1,7 @@
 <template>
     <section>
         <ul>
-            <li v-for="(todoItem,i) in todoItems" :key="i" class="shadow">
+            <li v-for="(todoItem,i) in propsdata" :key="i" class="shadow">
                 <i class="checkBtn fa fa-check" aria-hidden="true"></i>
                 {{todoItem}}
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, i)">
@@ -13,23 +13,25 @@
 </template>
 <script>
 export default {
-    data(){
-        return{
-            todoItems:[]
-        }
-    },
-    created(){
-        if(localStorage.length>0){
-            for(var i=0;i<localStorage.length;i++){
-                this.todoItems.push(localStorage.key(i));
-            }
-        }
-    },
+    // data(){
+    //     return{
+    //         todoItems:[]
+    //     }
+    // },
+    props:['propsdata'], //propsdata속성에 props로 전달
+    // created(){
+    //     if(localStorage.length>0){
+    //         for(var i=0;i<localStorage.length;i++){
+    //             this.todoItems.push(localStorage.key(i));
+    //         }
+    //     }
+    // },
     methods:{
         removeTodo(todoItem,i){
-            localStorage.removeItem(todoItem); //로컬데이터 삭제하는 api
-            this.todoItem.splice(i,1); //배열의 특정인덱스 삭제하는 api
-            // console.log(todoItem,i);
+            this.$emit('removeTodo',todoItem,i)
+            // localStorage.removeItem(todoItem); //로컬데이터 삭제하는 api
+            // this.todoItem.splice(i,1); //배열의 특정인덱스 삭제하는 api
+            //// console.log(todoItem,i);
         }
     }
 }

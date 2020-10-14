@@ -21,8 +21,9 @@ export default {
         addTodo(){
             if(this.newTodoItem!==""){
             // console.log(this.newTodoItem)
-                var value=this.newTodoItem && this.newTodoItem.trim();
-                localStorage.setItem(value,value);
+                var value=this.newTodoItem && this.newTodoItem.trim(); //앞뒤공백제거
+                this.$emit('addTodo',value);
+                // localStorage.setItem(value,value);
                 this.clearInput();
             }
         },

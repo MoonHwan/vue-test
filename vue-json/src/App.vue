@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <todo-header></todo-header>
-    <todo-input></todo-input>
-    <todo-list></todo-list>
-    <todo-footer></todo-footer>
+    <todo-input v-on:addTodo="addTodo"></todo-input>
+    <todo-list v-bind:propsdata="todoItems" v-on:removeTodo="removeTodo"></todo-list>
+    <todo-footer v-on:removeAll="clearAll"></todo-footer>
   </div>
 </template>
 
@@ -14,6 +14,36 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 export default {
+  data(){
+    return{
+      todoItems:[]
+    }
+  },
+  methods:{
+      addTodo(todoItem){
+            localStorage.setItem(todoItem,todoItem);
+            this.todoItems.push(todoItem);
+      },
+      clearAll(){
+        localStorage.clear();
+        this.todoItems=[];
+      },
+    
+      clearInput(){
+            this.newTodoItem='';
+      },
+      removeTodo(todoItem,i){
+        localStorage.removeItem(todoItem); //로컬데이터 삭제하는 api
+        this.todoItems.splice(i,1); //배열의 특정인덱스 삭제하는 api
+      }
+  },
+  created(){
+        if(localStorage.length>0){
+            for(var i=0;i<localStorage.length;i++){
+                this.todoItems.push(localStorage.key(i));
+            }
+        }
+    },
   components:{
     'TodoHeader':TodoHeader,
     'TodoInput':TodoInput,
