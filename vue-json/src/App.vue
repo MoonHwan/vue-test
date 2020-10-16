@@ -2,7 +2,9 @@
   <div id="app">
     <todo-header></todo-header>
     <todo-input v-on:addTodo="addTodo"></todo-input>
+    <!-- <todo-input v-on:하위컴포넌트에서 발생시킨 이멘트 이름="현재 컴포넌트의 매서드 명"></todo-input> -->
     <todo-list v-bind:propsdata="todoItems" v-on:removeTodo="removeTodo"></todo-list>
+    <!-- <todo-list v-bind:내려보낼 트롭스 속성이름="현재컴포넌트 데이터 속성" v-on:removeTodo="removeTodo"></todo-list> -->
     <todo-footer v-on:removeAll="clearAll"></todo-footer>
   </div>
 </template>
@@ -21,8 +23,8 @@ export default {
   },
   methods:{
       addTodo(todoItem){
-            localStorage.setItem(todoItem,todoItem);
-            this.todoItems.push(todoItem);
+        localStorage.setItem(todoItem,todoItem);
+        this.todoItems.push(todoItem);
       },
       clearAll(){
         localStorage.clear();

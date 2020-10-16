@@ -1,6 +1,18 @@
 <template>
     <section>
-        <ul>
+        <transition-group name='list' tag="ul">
+           <li v-for="(todoItem,i) in propsdata" :key="todoItem" class="shadow">
+                <i class="checkBtn fa fa-check" aria-hidden="true"></i>
+                {{todoItem}}
+                <span class="removeBtn" type="button" @click="removeTodo(todoItem, i)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+                <span class="removeBtn" type="button" @click="removeTodo(todoItem, i)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </span>
+            </li>
+        </transition-group>
+        <!-- <ul>
             <li v-for="(todoItem,i) in propsdata" :key="i" class="shadow">
                 <i class="checkBtn fa fa-check" aria-hidden="true"></i>
                 {{todoItem}}
@@ -8,7 +20,7 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </span>
             </li>
-        </ul>
+        </ul> -->
     </section>
 </template>
 <script>
@@ -37,6 +49,13 @@ export default {
 }
 </script>
 <style scoped>
+    .list-enter-active, .list-leave-active{
+        transition: all 1s;
+    }
+    .list-enter, .list-leave-to{
+        opacity: 0;
+        transform: translateY(30px);
+    }
     ul{
         list-style-type: none;
         padding-left: 0px;

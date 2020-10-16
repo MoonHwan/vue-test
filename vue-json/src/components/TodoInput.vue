@@ -7,14 +7,25 @@
         </span>
         <!-- <br> -->
         <!-- <button v-on:click="addTodo">추가</button> -->
+        <modal v-if="showModal" @close="showModal=false">
+            <h3 slot="header" >WORNING</h3>
+            <h2 slot="body">문자를 입력해주세요 </h2>
+            <span slot="footer" @click="showModal=false">닫기
+                <i class="closeModalBtn fa fa-times" aria-hidden="true"></i>
+            </span>
+        </modal>   
     </div>
 </template>
 <script>
+import Modal from './common/Modal.vue' 
+
 export default {
+    props:['propsdata'],
     data(){
         return{
             // newTodoTitle:'',
-            newTodoItem:''
+            newTodoItem:'',
+            showModal:false
         }       
     },
     methods:{
@@ -25,11 +36,16 @@ export default {
                 this.$emit('addTodo',value);
                 // localStorage.setItem(value,value);
                 this.clearInput();
+            } else{
+                this.showModal=!this.showModal;
             }
         },
         clearInput(){
             this.newTodoItem='';
         }
+    },
+    components:{
+        Modal:Modal
     }      
 }
 </script>
